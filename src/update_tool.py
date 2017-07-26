@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Copyright WONKSKNOW LLC
+__version__ = "0.1"
 
 from wheel.install import WheelFile
 from pydoc import ModuleScanner
@@ -11,6 +12,7 @@ from pkg_resources import parse_version, get_distribution
 import argparse
 import requests
 import warnings
+import subprocess as sp
 
 
 DL_LIST_URL = "https://drive.google.com/uc?export=download&id=0B-UtaVJD_Il0bmVmTm9mMjRBeDg"
@@ -56,6 +58,7 @@ def check_install(module, current_version=None, debug=False):
     return False
 
 def install_module(mod_name, mod_vals, debug=False):
+    """Checks for dependencies, then installs module"""
     already_installed = check_install(mod_vals["ImportedName"], mod_vals["Version"])
     if not already_installed:
         print("Installing module %s version %s" % (mod_name, mod_vals["Version"]))
@@ -87,6 +90,9 @@ def install_module(mod_name, mod_vals, debug=False):
         if debug:
             print("Not installing module. It is %s that this module was already installed" % already_installed)
         return already_installed
+
+def install_apt_get(*pkgs):
+    return sp.call(["apt-get", "install"] + pkgs, sys.stdout)
 
 def main(debug=False):
     dl_list_request = requests.get(DL_LIST_URL)

@@ -1,0 +1,4 @@
+import update_tool
+
+if __name__ == "__main__":
+    update_tool.main(debug=False)
