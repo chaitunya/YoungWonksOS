@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Copyright WONKSKNOW LLC
 
 """
@@ -11,6 +12,7 @@ import subprocess as sp
 import runpy
 import os
 import sys
+import shutil
 
 try:
     import requests
@@ -23,11 +25,13 @@ except:
 
 PROJECT_URL="https://bitbucket.org/chaitunya/YoungWonksOS.git"
 TMP_LOCATION = "/tmp/YoungWonksOS"
-def clone(repo_ur):
+def clone(repo_url):
     cmd = ["git", "clone", repo_url, TMP_LOCATION]
     p = sp.Popen(cmd)
     p.wait()
 
 clone(PROJECT_URL)
-sys.argv = ["install"]
-runpy.run_path(os.path.join(TMP_LOCATION), "setup.py"), run_name="__main__")
+setup_path = os.path.join(TMP_LOCATION, "setup.py")
+sys.argv = [setup_path, "install"]
+runpy.run_path(setup_path, run_name="__main__")
+shutil.rmtree(TMP_LOCATION)
