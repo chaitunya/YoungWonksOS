@@ -16,7 +16,7 @@ import warnings
 import subprocess as sp
 
 
-DL_LIST_URL = "https://drive.google.com/uc?export=download&id=0B-UtaVJD_Il0bmVmTm9mMjRBeDg"
+DL_LIST_URL = "https://pastebin.com/raw/R8AURQC5"
 INIT_STR_LEN = 9
 
 def check_install(module, at_least_version=None, debug=False):
