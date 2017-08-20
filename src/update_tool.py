@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright WONKSKNOW LLC
-__version__ = "1.0.3"
+__version__ = "1.0.5"
 
 from wheel.install import WheelFile
 from pydoc import ModuleScanner
