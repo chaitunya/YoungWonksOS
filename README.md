@@ -4,6 +4,4 @@ Contains:
 * SciPy
   * Numpy
 * matplotlib
-* OpenCV3
-
-Will add more
+* Compiled OpenCV3
